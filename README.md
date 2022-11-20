@@ -28,3 +28,30 @@ public var helloBezierPath: BezierPath = {
     return shape
 }()
 ```
+
+And to draw it you need to use provided `AnimatableBezierView`
+
+```swift
+struct HelloView: View {
+    
+    @State var animationPercent: Float = 0
+    
+    var body: some View {
+        AnimatableBezierView(path: helloBezierPath, colors: helloColors, animationPercent: animationPercent)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 3)) {
+                    animationPercent = 1
+                }
+            }
+    }
+    
+}
+```
+
+## Add via SwiftPM
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Nekitosss/AnimatableBezierPath", from: "1.0.0"),
+],
+```
